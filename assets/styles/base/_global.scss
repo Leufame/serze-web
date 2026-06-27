@@ -1,0 +1,213 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+// =============================================================
+// Theme tokens (CSS custom properties)
+// =============================================================
+
+:root {
+  --color-ink: #0a0a0a;
+  --color-paper: #f5f3ee;
+  --color-paper-warm: #ebe7df;
+  --color-grey-50: #fafafa;
+  --color-grey-100: #f0f0f0;
+  --color-grey-200: #d6d3cc;
+  --color-grey-300: #b8b5ae;
+  --color-grey-500: #8a8780;
+  --color-grey-700: #5a5852;
+  --color-seal-red: #8b1a1a;
+  --color-shu: #a83232;
+
+  --header-bg: rgba(245, 243, 238, 0.85);
+  --border-soft: rgba(10, 10, 10, 0.1);
+  --border-softer: rgba(10, 10, 10, 0.06);
+  --shadow-ink-2: 0 4px 16px rgba(10, 10, 10, 0.06);
+  --shadow-ink-3: 0 12px 32px rgba(10, 10, 10, 0.08);
+  --noise-opacity: 0.035;
+  --noise-blend: multiply;
+  --kanji-tint: rgba(10, 10, 10, 0.04);
+  --field-bg: transparent;
+  --cursor-color: #0a0a0a;
+  --cursor-hover-bg: rgba(10, 10, 10, 0.04);
+  --cursor-hover-border: #4a4a4a;
+  --grain-invert: 0;
+
+  color-scheme: light;
+}
+
+[data-theme='light'] {
+  color-scheme: light;
+}
+
+[data-theme='dark'] {
+  --color-ink: #f5f3ee;
+  --color-paper: #0a0a0a;
+  --color-paper-warm: #161616;
+  --color-grey-50: #2a2a2a;
+  --color-grey-100: #1a1a1a;
+  --color-grey-200: #3a3a3a;
+  --color-grey-300: #5a5852;
+  --color-grey-500: #8a8780;
+  --color-grey-700: #b8b5ae;
+  --color-seal-red: #c7392f;
+  --color-shu: #d4524a;
+
+  --header-bg: rgba(10, 10, 10, 0.85);
+  --border-soft: rgba(245, 243, 238, 0.1);
+  --border-softer: rgba(245, 243, 238, 0.06);
+  --shadow-ink-2: 0 4px 16px rgba(0, 0, 0, 0.4);
+  --shadow-ink-3: 0 12px 32px rgba(0, 0, 0, 0.5);
+  --noise-opacity: 0.06;
+  --noise-blend: screen;
+  --kanji-tint: rgba(245, 243, 238, 0.04);
+  --field-bg: transparent;
+  --cursor-color: #f5f3ee;
+  --cursor-hover-bg: rgba(245, 243, 238, 0.06);
+  --cursor-hover-border: #8a8780;
+  --grain-invert: 1;
+
+  color-scheme: dark;
+}
+
+// =============================================================
+// Lenis smooth scroll
+// =============================================================
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+// =============================================================
+// Global base
+// =============================================================
+
+html, body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  transition: background-color $dur-slow $ease-ink, color $dur-slow $ease-ink;
+}
+
+body {
+  // Custom cursor (desktop only)
+  @media (hover: hover) and (pointer: fine) {
+    cursor: none;
+  }
+}
+
+a, button {
+  @include focus-ring;
+}
+
+// Page transition: ink-swipe
+.ink-enter-active,
+.ink-leave-active {
+  transition: opacity $dur-base $ease-ink, transform $dur-base $ease-ink;
+  transition-duration: $dur-slow;
+}
+
+.ink-enter-from {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.ink-leave-to {
+  opacity: 0;
+  transform: translateY(-20px);
+}
+
+.container {
+  @include container('base');
+}
+
+.container--narrow { @include container('narrow'); }
+.container--wide   { @include container('wide'); }
+.container--full   { @include container('full'); }
+
+.section {
+  position: relative;
+  padding-block: $space-9;
+
+  @include media-up(md) { padding-block: $space-10; }
+  @include media-up(lg) { padding-block: $space-11; }
+}
+
+.section--tight { padding-block: $space-7; }
+
+.section-head {
+  @include flex(column, flex-start, flex-start, nowrap, $space-4);
+  margin-bottom: $space-8;
+}
+
+.section-head__index {
+  @include label;
+  color: var(--color-grey-500);
+  display: flex;
+  align-items: baseline;
+  gap: $space-3;
+
+  .numeral {
+    font-size: $fs-sm;
+  }
+}
+
+.section-head__title {
+  font-family: $font-display;
+  font-weight: $fw-medium;
+  font-size: clamp($fs-2xl, 4vw, $fs-3xl);
+  line-height: $lh-snug;
+  letter-spacing: $ls-tight;
+  color: var(--color-ink);
+}
+
+.section-head__sub {
+  @include label;
+  color: var(--color-grey-500);
+}
+
+.fx-stagger > * {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.fx-fade {
+  opacity: 0;
+}
+
+.fx-reveal {
+  overflow: hidden;
+
+  & > * {
+    display: block;
+    transform: translateY(110%);
+  }
+}
+
+.no-scroll {
+  overflow: hidden;
+  height: 100vh;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

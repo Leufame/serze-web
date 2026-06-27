@@ -1,0 +1,163 @@
+// =============================================================
+// Color Tokens — Sumi-e palette (CSS custom properties for theming)
+// =============================================================
+
+$color-sumi-ink-light: #0a0a0a;   // 墨 (light mode)
+$color-sumi-ink-dark:  #f5f3ee;   // 墨 (dark mode, paper)
+$color-paper-light:   #f5f3ee;   // 和紙 (light mode)
+$color-paper-dark:    #0a0a0a;   // 和紙 (dark mode)
+
+// SCSS vars are for compile-time use only (mixins etc).
+// Runtime theming goes through CSS custom properties.
+$color-sumi-ink: var(--color-ink);
+$color-paper:    var(--color-paper);
+
+// =============================================================
+// Other tokens (theme-invariant)
+// =============================================================
+
+$color-sumi-deep:   #161616;
+$color-sumi-mid:    #2a2a2a;
+$color-sumi-soft:   #4a4a4a;
+
+$color-paper-warm:  #ebe7df;
+$color-paper-cool:  #f0eee8;
+
+$color-grey-50:     #fafafa;
+$color-grey-100:    #f0f0f0;
+$color-grey-200:    #d6d3cc;
+$color-grey-300:    #b8b5ae;
+$color-grey-500:    #8a8780;
+$color-grey-700:    #5a5852;
+
+$color-shu:         #a83232;
+$color-seal-red:    #8b1a1a;
+$color-byakugan:    #ffffff;
+
+// =============================================================
+// Typography
+// =============================================================
+
+$font-display: 'Shippori Mincho', 'Noto Serif JP', 'Yu Mincho', 'Hiragino Mincho ProN', serif;
+$font-body:    'Noto Sans JP', 'Hiragino Sans', 'Yu Gothic', system-ui, sans-serif;
+$font-numeral: 'Shippori Mincho', serif;
+
+$fw-light:     300;
+$fw-regular:   400;
+$fw-medium:    500;
+$fw-semibold:  600;
+$fw-bold:      700;
+$fw-black:     800;
+
+$fs-xs:        0.6875rem;
+$fs-sm:        0.8125rem;
+$fs-base:      0.9375rem;
+$fs-md:        1.0625rem;
+$fs-lg:        1.25rem;
+$fs-xl:        1.5rem;
+$fs-2xl:       2rem;
+$fs-3xl:       2.75rem;
+$fs-4xl:       4rem;
+$fs-5xl:       5.5rem;
+$fs-6xl:       7.5rem;
+$fs-mega:      12rem;
+
+$lh-tight:     1.05;
+$lh-snug:      1.25;
+$lh-base:      1.6;
+$lh-loose:     1.8;
+$lh-display:   1.0;
+
+$ls-tight:     -0.02em;
+$ls-base:      0.01em;
+$ls-wide:      0.05em;
+$ls-extra:     0.25em;
+
+// =============================================================
+// Spacing
+// =============================================================
+
+$space-0:      0;
+$space-1:      0.25rem;
+$space-2:      0.5rem;
+$space-3:      0.75rem;
+$space-4:      1rem;
+$space-5:      1.5rem;
+$space-6:      2rem;
+$space-7:      3rem;
+$space-8:      4rem;
+$space-9:      6rem;
+$space-10:     8rem;
+$space-11:     12rem;
+
+// =============================================================
+// Layout
+// =============================================================
+
+$container-narrow:  720px;
+$container-base:    1080px;
+$container-wide:    1440px;
+$container-full:    1680px;
+
+$gutter-mobile:  $space-5;
+$gutter-tablet:  $space-6;
+$gutter-desktop: $space-8;
+
+// =============================================================
+// Breakpoints
+// =============================================================
+
+$bp-sm:  480px;
+$bp-md:  768px;
+$bp-lg:  1024px;
+$bp-xl:  1280px;
+$bp-2xl: 1536px;
+
+// =============================================================
+// Motion
+// =============================================================
+
+$ease-ink:        cubic-bezier(0.7, 0, 0.3, 1);
+$ease-brush:      cubic-bezier(0.25, 1, 0.5, 1);
+$ease-stamp:      cubic-bezier(0.34, 1.56, 0.64, 1);
+$ease-out-soft:   cubic-bezier(0.16, 1, 0.3, 1);
+$ease-in-out:     cubic-bezier(0.65, 0, 0.35, 1);
+
+$dur-instant:     0.1s;
+$dur-quick:       0.3s;
+$dur-base:        0.6s;
+$dur-slow:        0.9s;
+$dur-cinematic:   1.2s;
+$dur-epic:        1.8s;
+
+// =============================================================
+// Z-index
+// =============================================================
+
+$z-base:        1;
+$z-elevated:    10;
+$z-header:      50;
+$z-overlay:     80;
+$z-cursor:      90;
+$z-modal:       100;
+
+// =============================================================
+// Borders
+// =============================================================
+
+$border-hair:   1px;
+$border-thin:   1px solid var(--color-ink);
+$border-paper:  1px solid var(--color-grey-200);
+
+$radius-none:   0;
+$radius-sm:     2px;
+$radius-base:   4px;
+
+// =============================================================
+// Shadows (placeholder — use CSS vars in stylesheets)
+// =============================================================
+
+$shadow-ink-1:  0 1px 0 rgba(10, 10, 10, 0.04);
+$shadow-ink-2:  0 4px 16px rgba(10, 10, 10, 0.06);
+$shadow-ink-3:  0 12px 32px rgba(10, 10, 10, 0.08);
+$shadow-stamp:  inset 0 0 0 1px rgba(139, 26, 26, 0.2);

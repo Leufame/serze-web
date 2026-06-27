@@ -1,0 +1,138 @@
+@use 'variables' as *;
+
+// =============================================================
+// Media queries
+// =============================================================
+
+@mixin media-up($bp) {
+  @if $bp == sm { @media (min-width: $bp-sm)  { @content; } }
+  @if $bp == md { @media (min-width: $bp-md)  { @content; } }
+  @if $bp == lg { @media (min-width: $bp-lg)  { @content; } }
+  @if $bp == xl { @media (min-width: $bp-xl)  { @content; } }
+  @if $bp == 2xl { @media (min-width: $bp-2xl) { @content; } }
+}
+
+@mixin media-down($bp) {
+  @if $bp == sm { @media (max-width: ($bp-sm - 1px))  { @content; } }
+  @if $bp == md { @media (max-width: ($bp-md - 1px))  { @content; } }
+  @if $bp == lg { @media (max-width: ($bp-lg - 1px))  { @content; } }
+  @if $bp == xl { @media (max-width: ($bp-xl - 1px))  { @content; } }
+}
+
+@mixin reduce-motion {
+  @media (prefers-reduced-motion: reduce) { @content; }
+}
+
+@mixin hover {
+  @media (hover: hover) and (pointer: fine) {
+    &:hover { @content; }
+  }
+}
+
+// =============================================================
+// Layout helpers
+// =============================================================
+
+@mixin container($size: 'base') {
+  width: 100%;
+  margin-inline: auto;
+  padding-inline: $gutter-mobile;
+
+  @if $size == 'narrow' { max-width: $container-narrow; }
+  @if $size == 'base'   { max-width: $container-base; }
+  @if $size == 'wide'   { max-width: $container-wide; }
+  @if $size == 'full'   { max-width: $container-full; }
+
+  @include media-up(md) { padding-inline: $gutter-tablet; }
+  @include media-up(lg) { padding-inline: $gutter-desktop; }
+}
+
+@mixin grid($cols: 12, $gap: $space-5) {
+  display: grid;
+  grid-template-columns: repeat($cols, minmax(0, 1fr));
+  gap: $gap;
+}
+
+@mixin flex($dir: row, $align: stretch, $justify: flex-start, $wrap: nowrap, $gap: 0) {
+  display: flex;
+  flex-direction: $dir;
+  align-items: $align;
+  justify-content: $justify;
+  flex-wrap: $wrap;
+  gap: $gap;
+}
+
+// =============================================================
+// Type helpers
+// =============================================================
+
+@mixin display-text {
+  font-family: $font-display;
+  font-weight: $fw-medium;
+  line-height: $lh-display;
+  letter-spacing: $ls-tight;
+}
+
+@mixin label {
+  font-family: $font-body;
+  font-size: $fs-xs;
+  font-weight: $fw-medium;
+  letter-spacing: $ls-extra;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+@mixin body-text {
+  font-family: $font-body;
+  font-size: $fs-base;
+  font-weight: $fw-regular;
+  line-height: $lh-base;
+  letter-spacing: $ls-base;
+}
+
+@mixin japanese-vertical {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}
+
+// =============================================================
+// Interaction
+// =============================================================
+
+@mixin focus-ring {
+  &:focus-visible {
+    outline: 2px solid $color-sumi-ink;
+    outline-offset: 4px;
+  }
+}
+
+@mixin hoverable {
+  transition: opacity $dur-quick $ease-ink, transform $dur-quick $ease-ink;
+  @include hover {
+    opacity: 0.7;
+  }
+}
+
+@mixin clip-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+// =============================================================
+// Visual
+// =============================================================
+
+@mixin paper-grain {
+  position: relative;
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: url('/textures/paper-grain.svg');
+    background-size: 200px 200px;
+    opacity: 0.06;
+    mix-blend-mode: multiply;
+  }
+}

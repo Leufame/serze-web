@@ -1,0 +1,24 @@
+@use 'sass:math';
+@use 'variables' as *;
+
+// =============================================================
+// rem() — px → rem
+// =============================================================
+
+@function rem($px, $base: 16) {
+  @return math.div($px, $base) * 1rem;
+}
+
+// =============================================================
+// z() — named z-index from scale
+// =============================================================
+
+@function z($name) {
+  @if $name == 'base' { @return $z-base; }
+  @if $name == 'elevated' { @return $z-elevated; }
+  @if $name == 'header' { @return $z-header; }
+  @if $name == 'overlay' { @return $z-overlay; }
+  @if $name == 'cursor' { @return $z-cursor; }
+  @if $name == 'modal' { @return $z-modal; }
+  @return $z-base;
+}

@@ -1,0 +1,58 @@
+@use '../abstracts/variables' as *;
+
+// =============================================================
+// Global typography
+// =============================================================
+
+html {
+  font-size: 16px;
+
+  @media (min-width: 1024px) {
+    font-size: 17px;
+  }
+
+  @media (min-width: 1440px) {
+    font-size: 18px;
+  }
+}
+
+body {
+  font-family: $font-body;
+  font-size: $fs-base;
+  font-weight: $fw-regular;
+  line-height: $lh-base;
+  letter-spacing: $ls-base;
+  color: var(--color-ink);
+  background: var(--color-paper);
+  transition: color $dur-slow $ease-ink, background-color $dur-slow $ease-ink;
+}
+
+h1, h2, h3, h4 {
+  font-family: $font-display;
+  font-weight: $fw-medium;
+  line-height: $lh-tight;
+  letter-spacing: $ls-tight;
+  color: var(--color-ink);
+  transition: color $dur-slow $ease-ink;
+}
+
+h1 { font-size: clamp($fs-3xl, 8vw, $fs-5xl); }
+h2 { font-size: clamp($fs-2xl, 5vw, $fs-4xl); }
+h3 { font-size: clamp($fs-xl, 3vw, $fs-2xl); }
+h4 { font-size: $fs-lg; }
+
+p {
+  max-width: 60ch;
+}
+
+:lang(ja) {
+  font-feature-settings: 'palt' 1;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+.numeral {
+  font-family: $font-numeral;
+  font-feature-settings: 'lnum' 1, 'tnum' 1;
+  letter-spacing: 0.05em;
+}
