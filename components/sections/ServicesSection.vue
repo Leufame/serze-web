@@ -14,7 +14,7 @@ const listRef = ref<HTMLElement | null>(null)
 const services: ServiceItem[] = [
   { num: '壱', kanji: '意', title: 'ブランディング',   desc: '名前、姿、語調。一貫した物語を編む。' },
   { num: '弐', kanji: '形', title: 'UI / UX デザイン', desc: '和紙のような画面設計。触れる前から心地よい余白を。' },
-  { num: '参', kanji: '匠', title: 'フロントエンド開発', desc: 'Vue / Nuxt / GSAP。滑らかで静かな実装を。' },
+  { num: '参', kanji: '匠', title: 'フロントエンド開発', desc: 'Vue / Nuxt / GSAP / Laravel。滑らかで静かな実装を。' },
   { num: '肆', kanji: '動', title: 'モーション設計',   desc: '動きは呼吸。余韻を残すアニメーションを。' },
   { num: '伍', kanji: '創', title: 'クリエイティブディレクション', desc: '視点を揃え、全体の呼吸を調律する。' },
 ]
